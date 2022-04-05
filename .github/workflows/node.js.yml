@@ -29,3 +29,12 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+
+     # build and push docker images to docker hub throgh git hub actions
+    - name : Build and Push Docker image
+      uses : mr.smitheres excellent/ docker-build-push@v4
+      with: 
+        image: docker-hub-repo/image-name
+        registry: docker.io
+        username: ${{secrets.DOCKER_Usrname}}
+        password: ${{secrets.DOCKER_Password}}
